@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>SPARC 2028 Management System</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+
+  <body>
+    <h1>SPARC 2028: Members</h1>
+    <ul>
+        {% for x in mymembers %}
+          <li><a href="details/{{ x.id }}">{{ x.givenName }} {{ x.middleInitial }} {{ x.lastName }}</a></li>
+        {% endfor %}
+    </ul>
+    Note: This site is only used to display member data. Please edit data in the admin interface and not here.
+  </body>
+</html>
