@@ -1,19 +1,14 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>SPARC 2028 Management System</title>
-    <link rel="stylesheet" href="{% static 'style.css' %}">
-  </head>
+{% extends "base.html" %}
 
-  <body>
-    <h1>Member: {{ x.givenName }} {{ x.middleInitial }} {{ x.lastName }}</h1>
-    <ul>
-        <li>Teams: {{ x.listTeams }}</li>
-        <li>Subjects: {{ x.listSubjects }}</li>
-    </ul>
-    Note: This site is only used to display member data. Please edit data in the admin interface and not here.
-  </body>
-</html>
+{% block content %}
+{% if user.is_staff %}
+<h1>Member: {{ x.givenName }} {{ x.middleInitial }} {{ x.lastName }}</h1>
+<ul>
+    <li>Teams: {{ x.listTeams }}</li>
+    <li>Subjects: {{ x.listSubjects }}</li>
+</ul>
+Note: This site is only used to display member data. Please edit data in the admin interface and not here.
+{% else %}
+Sorry, you are not allowed to access this page. Please contact the administrator if this is a mistake.
+{% endif %}
+{% endblock %}

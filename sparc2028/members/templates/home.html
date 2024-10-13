@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+{% if user.is_authenticated %}
+<p>Hi {{ user.username }}!</p>
+<form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <button type="submit">Log Out</button>
+</form>
+{% if user.is_staff %}
+<ul>
+    <li><a href="/admin">Admin interface</a></li>
+    <li><a href="/members">List of members</a></li>
+</ul>
+{% else %}
+You currently have no available resources in this website. Please contact the administrator if you think this is a mistake.
+{% endif %}
+{% else %}
+<p>You are not logged in. <a href="{% url 'login' %}">Log in now.</a></p>
+{% endif %}
+
+<hr>
+
+<h2>SPARC 2028 Management System</h2>
+
+The SPARC 2028 management system aids the management and tracking of members' contributions to reviewers and other resources of SPARC.
+
+{% endblock %}

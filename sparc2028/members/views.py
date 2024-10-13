@@ -1,6 +1,7 @@
 from django.http import HttpResponse
 from django.template import loader
 from .models import Member
+from django.urls import reverse_lazy
 
 def members(request):
     sparc2028members = Member.objects.all().values()
